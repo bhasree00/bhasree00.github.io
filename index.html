@@ -31,7 +31,6 @@
       padding: 0 24px;
     }
 
-    /* ── Layout ── */
     .container {
       max-width: var(--max);
       margin: 0 auto;
@@ -174,6 +173,66 @@
       font-size: 11px;
     }
 
+    /* ── Experience ── */
+    #experience { animation-delay: 0.3s; }
+
+    .exp-item {
+      padding: 28px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 4px;
+    }
+
+    .exp-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-date {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-company {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-bullets li {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      display: flex;
+      gap: 10px;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
     /* ── Projects ── */
     #projects { animation-delay: 0.35s; }
 
@@ -214,6 +273,13 @@
       line-height: 1.7;
     }
 
+    .project-stack {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+
     .project-tag {
       font-size: 10px;
       letter-spacing: 0.08em;
@@ -225,36 +291,37 @@
       margin-top: 4px;
     }
 
-    /* ── Blog ── */
-    #blog { animation-delay: 0.45s; }
+    /* ── Skills ── */
+    #skills { animation-delay: 0.4s; }
 
-    .post-list { display: flex; flex-direction: column; }
-
-    .post-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 24px;
-      padding: 18px 0;
+    .skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 16px 0;
       border-top: 1px solid var(--rule);
-      text-decoration: none;
-      color: inherit;
-      transition: opacity 0.2s;
     }
 
-    .post-item:hover { opacity: 0.6; }
-
-    .post-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 17px;
-      letter-spacing: -0.01em;
-    }
-
-    .post-date {
+    .skill-category {
       font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--muted);
-      white-space: nowrap;
-      letter-spacing: 0.05em;
+      padding-top: 2px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 11px;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      padding: 3px 10px;
     }
 
     /* ── Contact ── */
@@ -298,7 +365,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-      width: 60px;
+      width: 64px;
     }
 
     /* ── Footer ── */
@@ -323,6 +390,8 @@
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
       .project-item { grid-template-columns: 32px 1fr; }
       .project-tag { display: none; }
+      .exp-header { flex-direction: column; gap: 4px; }
+      .skill-row { grid-template-columns: 1fr; gap: 10px; }
     }
   </style>
 </head>
@@ -334,19 +403,20 @@
       <a href="#" class="nav-name">Bharat S.</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Work</a></li>
-        <li><a href="#blog">Writing</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
 
     <!-- Hero -->
     <header class="hero">
-      <p class="hero-eyebrow">Software Engineer</p>
+      <p class="hero-eyebrow">Software Engineer · AI/ML</p>
       <h1>Bharat<br /><em>Sreekrishnavilas</em></h1>
       <p class="hero-bio">
-        I build thoughtful software — with care for systems, people, and the details in between.
-        Based wherever the work is interesting.
+        I build reliable, high-scale systems at the intersection of backend engineering and AI.
+        Currently at GEICO and pursuing an MS in Artificial Intelligence at UT Austin.
       </p>
     </header>
 
@@ -355,76 +425,147 @@
       <p class="section-label">About</p>
       <div class="about-grid">
         <div>
-          <p>I'm a software engineer with a passion for building reliable, well-crafted systems. I care about clean architecture, developer experience, and shipping things that actually work.</p>
-          <p>When I'm not coding, I'm probably reading about distributed systems, exploring new tools, or writing about something I learned the hard way.</p>
+          <p>I'm a software engineer focused on building mission-critical backend systems, API infrastructure, and AI-native developer tooling. I care about reliability, clean architecture, and shipping things that scale.</p>
+          <p>Currently studying Artificial Intelligence at UT Austin while working full-time at GEICO, where I've led initiatives spanning API security, claims processing, and engineering velocity.</p>
         </div>
         <div>
           <ul class="skills-list">
-            <li>Systems Design & Architecture</li>
-            <li>Backend Engineering</li>
-            <li>APIs & Distributed Systems</li>
-            <li>Developer Tooling</li>
-            <li>Technical Writing</li>
+            <li>Backend & API Engineering</li>
+            <li>Cloud Infrastructure (Azure)</li>
+            <li>AI & Machine Learning</li>
+            <li>Distributed Systems</li>
+            <li>Developer Experience (DX)</li>
           </ul>
         </div>
       </div>
     </section>
 
+    <!-- Experience -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Software Engineer</span>
+          <span class="exp-date">Jun 2023 – Present</span>
+        </div>
+        <div class="exp-company">GEICO</div>
+        <ul class="exp-bullets">
+          <li>Accelerated feature delivery by 30% by establishing AI-native DX best practices using Cursor for rapid prototyping and automated test generation.</li>
+          <li>Engineered a Java/Spring RESTful API on AKS orchestrating 80k+ daily data transfers via Azure Service Bus, achieving 99.95% availability with robust retry patterns.</li>
+          <li>Hardened API security for 100+ external vendors and $1M+ in annual invoice fulfillment by migrating to Apache APISIX Gateway with JWT-based OAuth flows.</li>
+          <li>Reduced claims processing latency by 60% by designing core features in the primary claims handling platform.</li>
+          <li>Cut engineering onboarding time by 85% by modernizing 60+ BDD application tests into a standardized testing framework.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Software Engineer Intern</span>
+          <span class="exp-date">Jun 2022 – Aug 2022</span>
+        </div>
+        <div class="exp-company">Netsmart Technologies</div>
+        <ul class="exp-bullets">
+          <li>Built a full-scale web portal modernizing how customers request vital life records across 12 state governments.</li>
+          <li>Frontend in Node.js, data layer in Microsoft SQL Server, and a .NET Core internal API in C#.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Data Science Intern</span>
+          <span class="exp-date">Jun 2021 – Aug 2021</span>
+        </div>
+        <div class="exp-company">US Bank</div>
+        <ul class="exp-bullets">
+          <li>Isolated insights from hundreds of thousands of customer demographic data points using SQL via Hue.</li>
+          <li>Applied statistical regression models in R to surface relationships between customer data and account booking rate.</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- Projects -->
     <section id="projects">
-      <p class="section-label">Selected Work</p>
+      <p class="section-label">Projects</p>
       <div class="project-list">
 
         <a href="#" class="project-item">
           <span class="project-num">01</span>
           <div>
-            <div class="project-title">Project Alpha</div>
-            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
+            <div class="project-title">Playlog</div>
+            <div class="project-desc">A webapp for gaming enthusiasts to track play history, log sessions, and review previously played games.</div>
+            <div class="project-stack">Java · Spring Boot · Supabase · Vercel</div>
           </div>
-          <span class="project-tag">Open Source</span>
-        </a>
-
-        <a href="#" class="project-item">
-          <span class="project-num">02</span>
-          <div>
-            <div class="project-title">Project Beta</div>
-            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
-          </div>
-          <span class="project-tag">Work</span>
-        </a>
-
-        <a href="#" class="project-item">
-          <span class="project-num">03</span>
-          <div>
-            <div class="project-title">Project Gamma</div>
-            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
-          </div>
-          <span class="project-tag">Side Project</span>
+          <span class="project-tag">Ongoing</span>
         </a>
 
       </div>
     </section>
 
-    <!-- Blog -->
-    <section id="blog">
-      <p class="section-label">Writing</p>
-      <div class="post-list">
+    <!-- Skills -->
+    <section id="skills">
+      <p class="section-label">Technical Skills</p>
 
-        <a href="#" class="post-item">
-          <span class="post-title">What I Learned Building X at Scale</span>
-          <span class="post-date">Mar 2026</span>
-        </a>
+      <div class="skill-row">
+        <span class="skill-category">Languages</span>
+        <div class="skill-tags">
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">Lua</span>
+        </div>
+      </div>
 
-        <a href="#" class="post-item">
-          <span class="post-title">A Better Mental Model for Distributed Systems</span>
-          <span class="post-date">Jan 2026</span>
-        </a>
+      <div class="skill-row">
+        <span class="skill-category">Frameworks</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Spring</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">JUnit</span>
+          <span class="skill-tag">Playwright</span>
+        </div>
+      </div>
 
-        <a href="#" class="post-item">
-          <span class="post-title">On Writing Software That Lasts</span>
-          <span class="post-date">Nov 2025</span>
-        </a>
+      <div class="skill-row">
+        <span class="skill-category">AI</span>
+        <div class="skill-tags">
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Prompt Engineering</span>
+          <span class="skill-tag">Agentic AI</span>
+          <span class="skill-tag">Cursor</span>
+        </div>
+      </div>
 
+      <div class="skill-row">
+        <span class="skill-category">Infrastructure</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kafka</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">APISIX</span>
+          <span class="skill-tag">Grafana</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">Maven</span>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <span class="skill-category">Data</span>
+        <div class="skill-tags">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">Oracle SQL</span>
+          <span class="skill-tag">Hibernate</span>
+        </div>
       </div>
     </section>
 
@@ -433,17 +574,17 @@
       <p class="section-label">Contact</p>
       <p class="contact-intro">Let's build something <em>worthwhile</em> together.</p>
       <div class="contact-links">
-        <a href="mailto:hello@example.com" class="contact-link">
+        <a href="mailto:bhasree00@gmail.com" class="contact-link">
           <span class="contact-link-label">Email</span>
-          hello@example.com
+          bhasree00@gmail.com
         </a>
-        <a href="https://github.com/" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-label">GitHub</span>
-          github.com/yourusername
-        </a>
-        <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="contact-link">
+        <a href="https://linkedin.com/in/bhasree" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-label">LinkedIn</span>
-          linkedin.com/in/yourusername
+          linkedin.com/in/bhasree
+        </a>
+        <a href="tel:6365798370" class="contact-link">
+          <span class="contact-link-label">Phone</span>
+          636-579-8370
         </a>
       </div>
     </section>
