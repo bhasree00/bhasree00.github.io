@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharat Sreekrishnavilas — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1a18;
+      --muted: #888880;
+      --accent: #c9633a;
+      --rule: #e0ddd6;
+      --max: 680px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.75;
+      padding: 0 24px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fade-up 0.6s ease forwards;
+    }
+
+    .nav-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 88px 0 80px;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fade-up 0.6s ease 0.15s forwards;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bio {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    /* ── Section shared ── */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fade-up 0.6s ease forwards;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── About ── */
+    #about { animation-delay: 0.25s; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .about-grid p {
+      color: var(--ink);
+      font-size: 13.5px;
+      line-height: 1.85;
+    }
+
+    .about-grid p + p { margin-top: 16px; }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skills-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .skills-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 11px;
+    }
+
+    /* ── Projects ── */
+    #projects { animation-delay: 0.35s; }
+
+    .project-list { display: flex; flex-direction: column; }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: start;
+      gap: 20px;
+      padding: 24px 0;
+      border-top: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+
+    .project-item:hover { opacity: 0.65; }
+
+    .project-num {
+      font-size: 11px;
+      color: var(--muted);
+      padding-top: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .project-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 8px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── Blog ── */
+    #blog { animation-delay: 0.45s; }
+
+    .post-list { display: flex; flex-direction: column; }
+
+    .post-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      padding: 18px 0;
+      border-top: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+
+    .post-item:hover { opacity: 0.6; }
+
+    .post-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+
+    .post-date {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Contact ── */
+    #contact { animation-delay: 0.55s; border-bottom: none; }
+
+    .contact-intro {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .contact-intro em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 13px;
+      transition: color 0.2s;
+      width: fit-content;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 60px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animation ── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      nav { flex-direction: column; gap: 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .project-item { grid-template-columns: 32px 1fr; }
+      .project-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Nav -->
+    <nav>
+      <a href="#" class="nav-name">Bharat S.</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#blog">Writing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+      <p class="hero-eyebrow">Software Engineer</p>
+      <h1>Bharat<br /><em>Sreekrishnavilas</em></h1>
+      <p class="hero-bio">
+        I build thoughtful software — with care for systems, people, and the details in between.
+        Based wherever the work is interesting.
+      </p>
+    </header>
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div>
+          <p>I'm a software engineer with a passion for building reliable, well-crafted systems. I care about clean architecture, developer experience, and shipping things that actually work.</p>
+          <p>When I'm not coding, I'm probably reading about distributed systems, exploring new tools, or writing about something I learned the hard way.</p>
+        </div>
+        <div>
+          <ul class="skills-list">
+            <li>Systems Design & Architecture</li>
+            <li>Backend Engineering</li>
+            <li>APIs & Distributed Systems</li>
+            <li>Developer Tooling</li>
+            <li>Technical Writing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <p class="section-label">Selected Work</p>
+      <div class="project-list">
+
+        <a href="#" class="project-item">
+          <span class="project-num">01</span>
+          <div>
+            <div class="project-title">Project Alpha</div>
+            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
+          </div>
+          <span class="project-tag">Open Source</span>
+        </a>
+
+        <a href="#" class="project-item">
+          <span class="project-num">02</span>
+          <div>
+            <div class="project-title">Project Beta</div>
+            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
+          </div>
+          <span class="project-tag">Work</span>
+        </a>
+
+        <a href="#" class="project-item">
+          <span class="project-num">03</span>
+          <div>
+            <div class="project-title">Project Gamma</div>
+            <div class="project-desc">A brief description of what this project does and why it matters. Replace with your real work.</div>
+          </div>
+          <span class="project-tag">Side Project</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <p class="section-label">Writing</p>
+      <div class="post-list">
+
+        <a href="#" class="post-item">
+          <span class="post-title">What I Learned Building X at Scale</span>
+          <span class="post-date">Mar 2026</span>
+        </a>
+
+        <a href="#" class="post-item">
+          <span class="post-title">A Better Mental Model for Distributed Systems</span>
+          <span class="post-date">Jan 2026</span>
+        </a>
+
+        <a href="#" class="post-item">
+          <span class="post-title">On Writing Software That Lasts</span>
+          <span class="post-date">Nov 2025</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <p class="contact-intro">Let's build something <em>worthwhile</em> together.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@example.com" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          hello@example.com
+        </a>
+        <a href="https://github.com/" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          github.com/yourusername
+        </a>
+        <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          linkedin.com/in/yourusername
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <span>© 2026 Bharat Sreekrishnavilas</span>
+      <span>Built by hand.</span>
+    </footer>
+
+  </div>
+</body>
+</html>
